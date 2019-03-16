@@ -40,7 +40,7 @@ MODEL_DIR = os.path.join(ROOT_DIR, "logs")
 COCO_MODEL_PATH = os.path.join(ROOT_DIR, "mask_rcnn_coco.h5")
 
 # Directory of images to run detection on
-IMAGE_DIR = "/home/kkshmz-rzm/bltb3-2/shibuya-4k/C0002"
+IMAGE_DIR = "/home/kkshmz-rzm/bltb3-2/shibuya-4k/C0017"
 
 
 # In[2]:
@@ -70,20 +70,20 @@ model.load_weights(COCO_MODEL_PATH, by_name=True)
 # Index of the class in the list is its ID. For example, to get ID of
 # the teddy bear class, use: class_names.index('teddy bear')
 class_names = ['BG', 'person', 'bicycle', 'car', 'motorcycle', 'airplane',
-               'bus', 'train', 'truck', 'boat', 'traffic light',
-               'fire hydrant', 'stop sign', 'parking meter', 'bench', 'bird',
+               'bus', 'train', 'truck', 'boat', 'traffic_light',
+               'fire_hydrant', 'stop_sign', 'parking meter', 'bench', 'bird',
                'cat', 'dog', 'horse', 'sheep', 'cow', 'elephant', 'bear',
                'zebra', 'giraffe', 'backpack', 'umbrella', 'handbag', 'tie',
-               'suitcase', 'frisbee', 'skis', 'snowboard', 'sports ball',
-               'kite', 'baseball bat', 'baseball glove', 'skateboard',
-               'surfboard', 'tennis racket', 'bottle', 'wine glass', 'cup',
+               'suitcase', 'frisbee', 'skis', 'snowboard', 'sports_ball',
+               'kite', 'baseball_bat', 'baseball_glove', 'skateboard',
+               'surfboard', 'tennis_racket', 'bottle', 'wine glass', 'cup',
                'fork', 'knife', 'spoon', 'bowl', 'banana', 'apple',
-               'sandwich', 'orange', 'broccoli', 'carrot', 'hot dog', 'pizza',
-               'donut', 'cake', 'chair', 'couch', 'potted plant', 'bed',
-               'dining table', 'toilet', 'tv', 'laptop', 'mouse', 'remote',
-               'keyboard', 'cell phone', 'microwave', 'oven', 'toaster',
+               'sandwich', 'orange', 'broccoli', 'carrot', 'hot_dog', 'pizza',
+               'donut', 'cake', 'chair', 'couch', 'potted_plant', 'bed',
+               'dining_table', 'toilet', 'tv', 'laptop', 'mouse', 'remote',
+               'keyboard', 'cell_phone', 'microwave', 'oven', 'toaster',
                'sink', 'refrigerator', 'book', 'clock', 'vase', 'scissors',
-               'teddy bear', 'hair drier', 'toothbrush']
+               'teddy_bear', 'hair_drier', 'toothbrush']
 
 
 # In[12]:
@@ -107,13 +107,13 @@ if not os.path.exists(COCO_MODEL_PATH):
 # Directory of images to run detection on
 
 
-SAVE_DIR = os.path.join(ROOT_DIR, "output/C0002/")
-with open('525.json', 'a') as outfile:
+SAVE_DIR = os.path.join(ROOT_DIR, "output/C0017/")
+with open('C0017.json', 'a') as outfile:
     for f in sorted(os.listdir(IMAGE_DIR)):
         print (f)
         image = io.imread(os.path.join(IMAGE_DIR,f))
         img = cv2.imread(os.path.join(IMAGE_DIR,f))
-        results = model.detect([image],verbose=1)
+        results = model.detect([image],verbose=0)
         r = results[0]
         imagename = os.path.join(SAVE_DIR+f)
         visualize.save_image(image, imagename,r['rois'], r['masks'], r['class_ids'], r['scores'],class_names)
@@ -135,7 +135,7 @@ with open('525.json', 'a') as outfile:
             objectData['x'] = ((int(x2)-int(x1))/2)+x1
             objectData['y'] = ((int(y1)-int(y2))/2)+y1
            
-            print(objectData)
+            #print(objectData)
             json.dump(objectData,outfile)
             outfile.write("\n")  
             

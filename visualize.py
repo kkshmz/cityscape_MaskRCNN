@@ -692,7 +692,7 @@ def save_image(image, image_name, boxes, masks, class_ids, scores, class_names, 
 
         # Label
         #font = ImageFont.truetype('/Library/Fonts/Arial.ttf', 15)
-        font = ImageFont.truetype('/usr/share/fonts/truetype/ubuntu-font-family/UbuntuMono-R.ttf', 15)
+        font = ImageFont.truetype('/usr/share/fonts/truetype/ubuntu-font-family/UbuntuMono-R.ttf', 30)
         draw.text((x1, y1), "%s %f" % (label, score), (255, 255, 255), font)
 
     masked_image.save(os.path.join(save_dir, '%s.bmp' % (image_name)))

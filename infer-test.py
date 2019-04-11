@@ -40,7 +40,7 @@ MODEL_DIR = os.path.join(ROOT_DIR, "logs")
 COCO_MODEL_PATH = os.path.join(ROOT_DIR, "mask_rcnn_coco.h5")
 
 # Directory of images to run detection on
-IMAGE_DIR = "/home/kkshmz-rzm/bltb3-2/shibuya-4k/C0002"
+IMAGE_DIR = "/home/kkshmz-rzm/bltb3-2/cityscape_MaskRCNN/test/"
 
 
 # In[2]:
@@ -52,7 +52,7 @@ class InferenceConfig(coco.CocoConfig):
     IMAGES_PER_GPU = 1
 
 config = InferenceConfig()
-# config.print()
+config.print()
 
 
 # In[3]:
@@ -107,8 +107,8 @@ if not os.path.exists(COCO_MODEL_PATH):
 # Directory of images to run detection on
 
 
-SAVE_DIR = os.path.join(ROOT_DIR, "output/C0002/")
-with open('C0002.json', 'a') as outfile:
+SAVE_DIR = os.path.join(ROOT_DIR, "test-out/")
+with open('infer-test.json', 'a') as outfile:
     for f in sorted(os.listdir(IMAGE_DIR)):
         print (f)
         image = io.imread(os.path.join(IMAGE_DIR,f))
